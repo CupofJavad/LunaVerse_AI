@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventSpec",
+  "type": "object",
+  "required": [
+    "event_name",
+    "client_name",
+    "start_date",
+    "end_date",
+    "venue",
+    "city",
+    "state",
+    "country",
+    "timezone",
+    "rooms"
+  ],
+  "properties": {
+    "event_name": { "type": "string" },
+    "client_name": { "type": "string" },
+    "start_date": { "type": "string", "format": "date" },
+    "end_date": { "type": "string", "format": "date" },
+    "venue": { "type": "string" },
+    "city": { "type": "string" },
+    "state": { "type": "string" },
+    "country": { "type": "string" },
+    "timezone": { "type": "string" },
+    "expected_attendance": { "type": "integer" },
+    "schedule_notes": { "type": "string" },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "capacity",
+          "days_active",
+          "audio",
+          "video",
+          "lighting",
+          "staging",
+          "power",
+          "schedule"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["GS", "Breakout", "Panel", "Workshop", "Expo", "Other"] },
+          "capacity": { "type": "integer" },
+          "days_active": {
+            "type": "array",
+            "items": { "type": "string", "format": "date" }
+          },
+          "layout": {
+            "type": "string",
+            "enum": ["Theater", "Classroom", "Rounds", "U-Shape", "Square", "Custom"]
+          },
+          "audio": {
+            "type": "object",
+            "properties": {
+              "inputs_needed": { "type": "integer" },
+              "mics": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["Lavalier", "Handheld", "Podium", "DPA", "Countryman", "Headset", "Wireless", "Wired", "Comms"]
+                }
+              },
+              "playback": { "type": "boolean" },
+              "pa_coverage": { "type": "string" }
+            }
+          },
+          "video": {
+            "type": "object",
+            "properties": {
+              "screens": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "size_in": { "type": "integer" },
+                    "count": { "type": "integer" },
+                    "placement": { "type": "string" }
+                  }
+                }
+              },
+              "projectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "lumens": { "type": "integer" },
+                    "count": { "type": "integer" },
+                    "lens": { "type": "string" }
+                  }
+                }
+              },
+              "primary_display_type": {
+                "type": "string",
+                "enum": ["LED Wall", "Projector", "TV/Monitor", "None"]
+              },
+              "led_wall": {
+                "type": "object",
+                "properties": {
+                  "width_ft": { "type": "number" },
+                  "height_ft": { "type": "number" },
+                  "pitch_mm": { "type": "number" }
+                }
+              },
+              "recording": { "type": "boolean" },
+              "livestream": { "type": "boolean" },
+              "cameras": {
+                "type": "number"
+              }
+            }
+          },
+          "lighting": {
+            "type": "object",
+            "properties": {
+              "basic_wash": { "type": "boolean" },
+              "uplights": { "type": "integer" },
+              "moving_heads": { "type": "integer" },
+              "console_required": { "type": "boolean" }
+            }
+          },
+          "staging": {
+            "type": "object",
+            "properties": {
+              "stage_width_ft": { "type": "number" },
+              "stage_depth_ft": { "type": "number" },
+              "stage_height_ft": { "type": "number" },
+              "skirting": { "type": "boolean" },
+              "pipe_and_drape": {
+                "type": "object",
+                "properties": {
+                  "height_ft": { "type": "number" },
+                  "linear_ft": { "type": "number" }
+                }
+              }
+            }
+          },
+          "power": {
+            "type": "object",
+            "properties": {
+              "dedicated_circuits": { "type": "integer" },
+              "venue_power_notes": { "type": "string" }
+            }
+          },
+          "schedule": {
+            "type": "object",
+            "properties": {
+              "load_in": { "type": "string" },
+              "rehearsal": { "type": "string" },
+              "show_start": { "type": "string" },
+              "show_end": { "type": "string" },
+              "load_out": { "type": "string" }
+            }
+          },
+          "additional_notes": { "type": "string" }
+        }
+      }
+    },
+    "general_notes": { "type": "string" }
+  }
+}
+

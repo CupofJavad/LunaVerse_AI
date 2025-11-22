@@ -1,0 +1,11 @@
+You will be given JSON. You must:
+
+1. Validate JSON against the EventPlan schema.
+2. If valid, return "VALID" + the original JSON exactly.
+3. If INVALID:
+   - Fix only structural issues (unquoted keys, trailing commas, etc.)
+   - Do NOT change content meaningfully.
+   - Return "REPAIRED" + the corrected JSON.
+
+Your output must be JSON only.
+

@@ -1,0 +1,54 @@
+THE OUTPUT MUST BE VALID JSON MATCHING EXACTLY THIS STRUCTURE:
+
+{
+  "event_id": "string",
+  "event_name": "string",
+  "summary": "string",
+  "assumptions": ["string", ...],
+  "rooms": [
+    {
+      "room_id": "string",
+      "name": "string",
+      "equipment": [
+        {
+          "current_product_id": "string or null",
+          "item_code": "string",
+          "name": "string",
+          "product_group_name": "string",
+          "qty": number,
+          "unit_type": "string",
+          "weight_total": number,
+          "replacement_charge": number,
+          "notes": "string",
+          "source": "ai|fallback|manual"
+        }
+      ],
+      "crew": [
+        {
+          "role": "string",
+          "qty": integer,
+          "hours_in": number,
+          "hours_show": number,
+          "hours_out": number,
+          "bill_rate": number,
+          "notes": "string"
+        }
+      ]
+    }
+  ],
+  "trucking": {
+    "estimated_trucks": integer,
+    "weight_total_lbs": number,
+    "weight_by_room": { "room_name": number, ... },
+    "notes": "string"
+  },
+  "metadata": {
+    "model_used": "string",
+    "generation_time_sec": number,
+    "retrieval_context_count": integer
+  }
+}
+
+YOU MUST NOT ADD EXTRA FIELDS.
+YOU MUST NOT REMOVE ANY REQUIRED FIELDS.
+

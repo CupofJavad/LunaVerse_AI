@@ -1,0 +1,18 @@
+CONTEXT FOR AI:
+
+INVENTORY SUMMARY (TOP MATCHES):
+{{inventory_docs}}
+
+HISTORIC SHOWS (MOST RELEVANT):
+{{historic_events}}
+
+TEMPLATE DOCUMENTS (STANDARD KITS):
+{{templates}}
+
+INSTRUCTIONS:
+- Use inventory_docs as your primary source of permitted equipment.
+- Use historic_events to model typical quantities.
+- Use templates to guide standard room packages.
+- If EventSpec references LED walls, audio requirements, etc., map them to known product groups.
+- Always match gear to the nearest correct Current RMS product if exact match is unavailable.
+

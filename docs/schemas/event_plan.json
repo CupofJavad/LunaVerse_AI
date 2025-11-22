@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EventPlan",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_name",
+    "summary",
+    "assumptions",
+    "rooms",
+    "trucking",
+    "metadata"
+  ],
+  "properties": {
+    "event_id": { "type": "string" },
+    "event_name": { "type": "string" },
+    "summary": { "type": "string" },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rooms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["room_id", "name", "equipment", "crew"],
+        "properties": {
+          "room_id": { "type": "string" },
+          "name": { "type": "string" },
+          "equipment": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["item_code", "name", "qty"],
+              "properties": {
+                "current_product_id": { "type": "string" },
+                "item_code": { "type": "string" },
+                "name": { "type": "string" },
+                "product_group_name": { "type": "string" },
+                "qty": { "type": "number" },
+                "unit_type": { "type": "string" },
+                "weight_total": { "type": "number" },
+                "replacement_charge": { "type": "number" },
+                "notes": { "type": "string" },
+                "source": { "type": "string", "enum": ["ai", "fallback", "manual"] }
+              }
+            }
+          },
+          "crew": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["role", "qty"],
+              "properties": {
+                "role": { "type": "string" },
+                "qty": { "type": "integer" },
+                "hours_in": { "type": "number" },
+                "hours_show": { "type": "number" },
+                "hours_out": { "type": "number" },
+                "bill_rate": { "type": "number" },
+                "notes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "trucking": {
+      "type": "object",
+      "required": ["estimated_trucks"],
+      "properties": {
+        "estimated_trucks": { "type": "integer" },
+        "weight_total_lbs": { "type": "number" },
+        "weight_by_room": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "model_used": { "type": "string" },
+        "generation_time_sec": { "type": "number" },
+        "retrieval_context_count": { "type": "integer" }
+      }
+    }
+  }
+}
+
